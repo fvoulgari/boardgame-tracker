@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>Board Game Tracker</title>
+    <style>
+      #toast {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        padding: 20px;
+        z-index: 99999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="container">
+          <div class="hero is-info is-bold">
+            <div class="hero-body">
+              <h1 class="is-size-1">Board Game Tracker</h1>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="section">
+        <div class="container">
+          <div>
+            <button class="button is-info" @click="showModal = true">
+              + Add Board Game
+            </button>
+          </div>
+          <div>
+            <table class="table is-fullwidth is-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Publisher</th>
+                  <th>Release Year</th>
+                  <th>Player Count</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(game, index) in games" :key="game.id">
+                  <td>
+                    <input class="input" type="text" v-model="game.name" />
+                  </td>
+                  <td>
+                    <input class="input" type="text" v-model="game.publisher" />
+                  </td>
+                  <td>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="game.releaseYear"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="game.playerCount"
+                    />
+                  </td>
+                  <td style="text-align:center">
+                    <button class="button" @click="updateGame(index)">
+                      Update
+                    </button>
+                  </td>
+                  <td>
+                    <a
+                      class="delete is-large has-background-danger"
+                      @click="deleteGame(game.id, index)"
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="has-text-centered" v-show="games.length < 1">
+              <h2 class="is-size-4 has-text-info">Loading...</h2>
+            </div>
+          </div>
+          <div id="toast" v-show="toast.show" class="container" :class="['has-background-' + toast.type]">
+            <h2 class="is-size-5 has-text-white">{{ toast.message }}</h2>
+          </div>
+        </div>
+      </section>
+      <div class="modal" :class="{ 'is-active': showModal }">
+        <div class="modal-background" @click="showModal = false"></div>
+        <div class="modal-content">
+          <div class="box">
+            <h3 class="is-size-3">Add Board Game</h3>
+            <hr />
+            <div class="field">
+              <p class="control">
+                <input
+                  v-model="newGame.name"
+                  class="input"
+                  type="text"
+                  placeholder="Board Game Name"
+                  value=""
+                />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input
+                  v-model="newGame.publisher"
+                  class="input"
+                  type="text"
+                  placeholder="Publisher"
+                  value=""
+                />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input
+                  type="number"
+                  class="input"
+                  placeholder="Release Year"
+                  v-model="newGame.releaseYear"
+                />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input
+                  type="number"
+                  class="input"
+                  placeholder="Player Count"
+                  v-model="newGame.playerCount"
+                />
+              </p>
+            </div>
+            <button class="button is-info" @click="createGame()">Add Game</button>
+          </div>
+        </div>
+        <button
+          class="modal-close is-large"
+          aria-label="close"
+          @click="showModal = false"
+        ></button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

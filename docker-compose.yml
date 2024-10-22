@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=${USER_SERVICE_MONGO_URI}
+  
+  session-service:
+    build:
+      context: ./session-service
+    ports:
+      - "3003:3003"
+    environment:
+      -  MONGO_URI=${SESSION_SERVICE_MONGO_URI}
+
+  game-service:
+    build:
+      context: ./game-service
+    ports:
+      - "3002:3002"
+    environment:
+      - MONGO_URI=${GAME_SERVICE_MONGO_URI}
+
+networks:
+  default:
+    driver: bridge

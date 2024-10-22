@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\foto7\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: game-service
+  name: game-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: game-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\foto7\AppData\Local\Microsoft\WinGet\Packages\Kubernetes.kompose_Microsoft.Winget.Source_8wekyb3d8bbwe\kompose.exe convert
+        kompose.version: 1.31.2 (a92241f79)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/boardgame-tracker-default: "true"
+        io.kompose.service: game-service
+    spec:
+      containers:
+        - env:
+            - name: MONGO_URI
+              value: mongodb://board-game-tracker-db:ml2ZGOWTBw2cT0Rx2q9Y0HBpbyd5f727anI299ic8CkhfqloXKhSkzdo4jVBIBwVdwNklm0pSzZqACDbnHRPpQ==@board-game-tracker-db.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@board-game-tracker-db@
+          image: fayv/boardgame-tracker-game-service:latest
+          name: game-service
+          ports:
+            - containerPort: 3002
+              hostPort: 3002
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}
