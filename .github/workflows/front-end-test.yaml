@@ -39,9 +39,14 @@ jobs:
     needs: build-and-test  
 
     steps:
-      - name: Manual Workflow Approval
-        uses: trstringer/manual-approval@v1.9.1
-        
+      - uses: trstringer/manual-approval@v1
+        with:
+          approvers: fvoulgari
+          minimum-approvals: 1
+          issue-title: "Approval of eploying to prod"
+          issue-body: "Please approve or deny the deployment "
+          exclude-workflow-initiator-as-approver: false
+
       - name: Checkout code
         uses: actions/checkout@v2
 
