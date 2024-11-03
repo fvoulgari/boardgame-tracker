@@ -3,9 +3,9 @@ const Game = require('../models/Game');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { name, genre, playtime, players } = req.body;
+    const { gameId, genre, playtime, players } = req.body;
     try {
-        const game = new Game({ gameId: name, genre, playtime, players });
+        const game = new Game({ gameId: gameId, genre, playtime, players });
         await game.save();
         res.status(201).send(game);
     } catch (error) {
@@ -30,6 +30,30 @@ router.get('/:gameId', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+// PUT route to update a game by gameId
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;  // Extract gameId from route parameters
+    const { gameId, genre, playtime, players } = req.body;  // Extract updated game data from request body
+
+    try {
+        // Find the game by gameId and update it with the new data
+        const updatedGame = await Game.findOneAndUpdate(
+            { gameId: gameId },  // Find by gameId
+            { gameId, genre, playtime, players },  // Update fields
+            { new: true }  // Return the updated document
+        );
+
+        if (!updatedGame) {
+            return res.status(404).send({ message: "Game not found" });
+        }
+
+        res.send(updatedGame);  // Send the updated game data as a response
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 
 router.delete('/:gameId', async (req, res) => {
     try {

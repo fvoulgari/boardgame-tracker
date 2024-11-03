@@ -1,0 +1,120 @@
+/* BoardGameTracker.css */
+
+/* Toast Notification */
+#toast {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 20px;
+    z-index: 99999;
+  }
+  
+  /* Additional styling adjustments (optional) */
+  .hero-body {
+    text-align: center;
+  }
+  
+  .modal-content {
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .date-input {
+    padding: 10px;                     
+    border: 2px solid gray;     
+    border-radius: 5px;                          
+    background-color: #f9f9f9;     
+    transition: border-color 0.3s;  
+}
+
+.date-input:focus {
+    outline: none;                     
+    border-color: #0056b3;           
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.date-input::placeholder {
+    color: #999;                       
+    opacity: 1;                       
+}
+.date-input-add {
+  padding: 10px;   
+  width: 100%; /* Full width */                 
+  border: 2px solid gray;     
+  border-radius: 5px;                          
+  background-color: #f9f9f9;     
+  transition: border-color 0.3s;  
+}
+
+.date-input-add:focus {
+  outline: none;                     
+  border-color: #0056b3;           
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.date-input-add::placeholder {
+  color: #999;                       
+  opacity: 1;                       
+}
+
+
+/* Styles for the select container */
+.form-group {
+  margin: 1rem 0; /* Space between form groups */
+}
+/* Styles for the select element */
+select[multiple] {
+  width: 100%; /* Full width */
+  height: 100px; /* Set height for multi-select */
+  padding: 0.5rem; /* Padding */
+  font-size: 1rem; /* Font size */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Change border color on focus */
+select[multiple]:focus {
+  border-color: #007BFF; /* Change to a blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+
+/* Basic styling for select element */
+select {
+  width: 100%; /* Full width */
+  padding: 0.5rem; /* Padding for better spacing */
+  font-size: 1rem; /* Font size */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #fff; /* Background color */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Change border color on focus */
+select:focus {
+  border-color: gray; /* Change to a blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Styling for the options inside the select */
+select option {
+  padding: 0.5rem; /* Padding for options */
+}
+
+/* Add hover effect on options (Note: this may not work in all browsers) */
+select:hover {
+  border-color: #007BFF; /* Change border color on hover */
+}
+
+/* Optional: style the container of the select */
+
+
+  

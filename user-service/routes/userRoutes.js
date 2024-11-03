@@ -59,4 +59,26 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;  // Extract gameId from route parameters
+    const { username, email } = req.body;
+
+    try {
+        // Find the game by gameId and update it with the new data
+        const updateUser = await User.findByIdAndUpdate(
+            id,  // Find by gameId
+            { username, email },  // Update fields
+            { new: true }  // Return the updated document
+        );
+
+        if (!updateUser) {
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        res.send(updateUser);  // Send the updated game data as a response
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 module.exports = router;

@@ -2,9 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const sessionRoutes = require('./routes/sessionRoutes');
 require('dotenv').config();
+const cors = require('cors'); // Import the cors package
+
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const MONGO_URI = process.env.MONGO_URI;
 

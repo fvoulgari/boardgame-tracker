@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: react-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: react-app
   template:
     metadata:
       labels:
-        app: nginx
+        app: react-app
     spec:
       containers:
       - name: nginx
@@ -18,10 +18,9 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-          - name: nginx-config
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
+        - name: react-app-volume
+          mountPath: /usr/share/nginx/html
       volumes:
-      - name: nginx-config
+      - name: react-app-volume
         configMap:
-          name: nginx-config
+          name: react-app-config

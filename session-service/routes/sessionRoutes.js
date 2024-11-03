@@ -29,6 +29,46 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:sessionID', async (req, res) => {
+    try {
+        const sessionID = req.params.sessionID; 
+        const deletedSession = await Session.findByIdAndDelete( sessionID ); 
+        console.log(deletedSession)
+        console.log(sessionID)
+        if (!deletedSession) {
+            return res.status(404).send({ message: 'Session not found' }); 
+        }
+
+        res.status(200).send({ message: 'Session successfully deleted', session: deletedSession });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: 'An error occurred', error });
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;  // Extract gameId from route parameters
+    const { gameId, date, players } = req.body;
+
+    try {
+        // Find the game by gameId and update it with the new data
+        const updateSession = await Session.findByIdAndUpdate(
+            id,  // Find by gameId
+            { gameId, date, players },  // Update fields
+            { new: true }  // Return the updated document
+        );
+
+        if (!updateSession) {
+            return res.status(404).send({ message: "Session not found" });
+        }
+
+        res.send(updateSession);  // Send the updated game data as a response
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+
 router.get('/game/:gameId', async (req, res) => {
     try {
         
@@ -46,6 +86,9 @@ router.get('/game/:gameId', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+
+
 
 router.get('/user/:userId', async (req, res) => {
     try {
