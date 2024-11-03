@@ -1,7 +1,7 @@
 const appInsights = require('applicationinsights');
 
 const INSIGHT_KEY = process.env.INSIGHT_KEY;
-
+console.log(INSIGHT_KEY, "This is the insight key")
 // Use either the instrumentation key or connection string
 appInsights.setup(INSIGHT_KEY)
   .setAutoCollectRequests(true)    // Enable request tracking
