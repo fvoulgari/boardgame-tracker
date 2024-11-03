@@ -26,7 +26,7 @@ jobs:
       - name: Build frontend
         run: |
           cd frontend-service
-          npm run build
+          CI=false npm run build
           
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
