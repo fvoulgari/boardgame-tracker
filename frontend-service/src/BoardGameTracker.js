@@ -37,7 +37,7 @@ const BoardGameTracker = () => {
 
   const EXTERNAL_URL=   process.env.REACT_APP_EXTERNAL_URL || "http://135.233.104.22"
 
-  console.log(EXTERNAL_URL,"EXTERNAL_URL")
+  console.log(EXTERNAL_URL,"EXTERNAL_URL THIS IS A TEST TO SEE IF IT IS WORKING")
 
 
   const gamesAPI = `${EXTERNAL_URL}/api/games`;
