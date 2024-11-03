@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.12.1'
+
+      # Frontend Build and Tests
+      - name: Install frontend dependencies
+        run: |
+          cd frontend-service
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend-service
+          npm run build
+
+      - name: Run frontend tests
+        run: |
+          cd frontend-service
+          npm test
