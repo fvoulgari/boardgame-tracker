@@ -1,12 +1,15 @@
-name: CI/CD Pipeline
+# .github/workflows/workflow-b.yml
+name: CI/CD Pipeline - Deployment
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["CI/CD Pipeline"] 
+    types:
+      - completed  
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}  
     runs-on: ubuntu-latest
 
     steps:
@@ -51,7 +54,7 @@ jobs:
 
       - name: Set AKS context
         run: |
-          az aks get-credentials --resource-group  myResourceGroup  --name  myAKSCluster
+          az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
       
       - name: Remove existing ConfigMap (if it exists)
         run: |
@@ -81,4 +84,3 @@ jobs:
           kubectl rollout restart deployment user-service
           kubectl rollout restart deployment react-app
           kubectl rollout restart deployment/nginx
-
