@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ github.TOKEN }}
+          secret: ${{ secrets.PAT_TOKEN  }}
           approvers: fvoulgari
           minimum-approvals: 1
           issue-title: "Approval of eploying to prod"
