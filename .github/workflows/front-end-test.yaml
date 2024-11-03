@@ -19,7 +19,6 @@ jobs:
         with:
           node-version: '18.12.1'
 
-      # Frontend Build and Tests
       - name: Install frontend dependencies
         run: |
           cd frontend-service
@@ -38,9 +37,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-test  
-    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' 
 
     steps:
+      - name: Manual Workflow Approval
+        uses: trstringer/manual-approval@v1.9.1
+        
       - name: Checkout code
         uses: actions/checkout@v2
 
