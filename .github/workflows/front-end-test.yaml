@@ -56,9 +56,25 @@ jobs:
         with:
           node-version: '18.12.1' 
 
-      - name: Install dependencies
+      # Install dependencies for each service
+      - name: Install dependencies for frontend-service
         run: |
           cd frontend-service
+          npm install
+      
+      - name: Install dependencies for game-service
+        run: |
+          cd game-service
+          npm install
+
+      - name: Install dependencies for session-service
+        run: |
+          cd session-service
+          npm install
+
+      - name: Install dependencies for user-service
+        run: |
+          cd user-service
           npm install
 
       - name: Build frontend
