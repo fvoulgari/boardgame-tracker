@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: 
 
 jobs:
   build-and-test:
@@ -36,7 +37,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-test  # Ensures this job only runs after build-and-test succeeds
+    needs: build-and-test  
+    if: github.ref == 'refs/heads/main'  
 
     steps:
       - name: Checkout code
@@ -109,4 +111,4 @@ jobs:
           kubectl rollout restart deployment session-service
           kubectl rollout restart deployment user-service
           kubectl rollout restart deployment react-app
-          kubectl rollout restart deployment/nginx
+          kubectl rollout restart deployment nginx
