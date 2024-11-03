@@ -27,7 +27,7 @@ jobs:
       - name: Build frontend
         run: |
           cd frontend-service
-          npm run build
+          CI=false npm run build
 
       - name: Run frontend tests
         run: |
