@@ -30,7 +30,7 @@ spec:
               value: mongodb://board-game-tracker-db:ml2ZGOWTBw2cT0Rx2q9Y0HBpbyd5f727anI299ic8CkhfqloXKhSkzdo4jVBIBwVdwNklm0pSzZqACDbnHRPpQ==@board-game-tracker-db.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@board-game-tracker-db@
             - name: INSIGHT_KEY
               value: InstrumentationKey=44e1cf59-dff6-4587-ae8b-6a974cd2acba;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/;ApplicationId=43049bad-b166-4005-af7c-e96b92e54deb
-          image: fayv/boardgame-tracker-game-service:latest
+          image: fayv/game-service
           name: game-service
           ports:
             - containerPort: 3002
