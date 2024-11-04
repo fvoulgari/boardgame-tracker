@@ -1,7 +1,6 @@
-// BoardGameTracker.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./BoardGameTracker.css"; // Create a separate CSS file for custom styles if needed
+import "./BoardGameTracker.css";
 
 
 const BoardGameTracker = () => {

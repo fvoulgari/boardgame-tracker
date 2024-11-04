@@ -31,24 +31,22 @@ router.get('/:gameId', async (req, res) => {
     }
 });
 
-// PUT route to update a game by gameId
 router.put('/:id', async (req, res) => {
-    const { id } = req.params;  // Extract gameId from route parameters
-    const { gameId, genre, playtime, players } = req.body;  // Extract updated game data from request body
+    const { id } = req.params;  
+    const { gameId, genre, playtime, players } = req.body; 
 
     try {
-        // Find the game by gameId and update it with the new data
         const updatedGame = await Game.findOneAndUpdate(
-            { gameId: gameId },  // Find by gameId
-            { gameId, genre, playtime, players },  // Update fields
-            { new: true }  // Return the updated document
+            { gameId: gameId },  
+            { gameId, genre, playtime, players },  
+            { new: true }  
         );
 
         if (!updatedGame) {
             return res.status(404).send({ message: "Game not found" });
         }
 
-        res.send(updatedGame);  // Send the updated game data as a response
+        res.send(updatedGame); 
     } catch (error) {
         res.status(500).send(error);
     }

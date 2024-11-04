@@ -7,6 +7,6 @@ spec:
     app: nginx
   ports:
     - protocol: TCP
-      port: 80       # Exposed port
-      targetPort: 80 # Port on the NGINX container
-  type: LoadBalancer # Use LoadBalancer for external access, or ClusterIP for internal-only access
+      port: 80       
+      targetPort: 80
+  type: LoadBalancer 

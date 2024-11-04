@@ -9,7 +9,7 @@ data:
 
         # Route for game-service
         location /api/games {
-            proxy_pass http://game-service:3002;  # Adjust the port if needed
+            proxy_pass http://game-service:3002; 
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -18,7 +18,7 @@ data:
 
         # Route for user-service
         location /api/users {
-            proxy_pass http://user-service:3001;  # Adjust the port if needed
+            proxy_pass http://user-service:3001; 
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -27,7 +27,7 @@ data:
 
         # Route for session-service
         location /api/sessions {
-            proxy_pass http://session-service:3003;  # Adjust the port if needed
+            proxy_pass http://session-service:3003; 
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

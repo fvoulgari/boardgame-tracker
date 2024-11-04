@@ -2,22 +2,20 @@ const appInsights = require('applicationinsights');
 
 const INSIGHT_KEY = process.env.INSIGHT_KEY;
 
-// Use either the instrumentation key or connection string
 appInsights.setup(INSIGHT_KEY)
-  .setAutoCollectRequests(true)    // Enable request tracking
-  .setAutoCollectDependencies(true) // Enable dependency tracking
-  .setAutoCollectExceptions(true)   // Enable error tracking
-  .setAutoCollectPerformance(true)  // Enable performance tracking
-  .setAutoCollectConsole(true, true) // Collect console.log and console.error
-  .start();                         // Starts the Application Insights SDK
+  .setAutoCollectRequests(true)    
+  .setAutoCollectDependencies(true) 
+  .setAutoCollectExceptions(true)   
+  .setAutoCollectPerformance(true) 
+  .setAutoCollectConsole(true, true)
+  .start();                        
 
 
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
-const cors = require('cors'); // Import the cors package
-
+const cors = require('cors'); 
 
 const app = express();
 app.use(express.json());

@@ -47,22 +47,21 @@ router.delete('/:sessionID', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    const { id } = req.params;  // Extract gameId from route parameters
+    const { id } = req.params;  
     const { gameId, date, players } = req.body;
 
     try {
-        // Find the game by gameId and update it with the new data
         const updateSession = await Session.findByIdAndUpdate(
-            id,  // Find by gameId
-            { gameId, date, players },  // Update fields
-            { new: true }  // Return the updated document
+            id,  
+            { gameId, date, players },  
+            { new: true }  
         );
 
         if (!updateSession) {
             return res.status(404).send({ message: "Session not found" });
         }
 
-        res.send(updateSession);  // Send the updated game data as a response
+        res.send(updateSession);  
     } catch (error) {
         res.status(500).send(error);
     }
